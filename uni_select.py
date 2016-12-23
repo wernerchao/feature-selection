@@ -7,6 +7,9 @@ import pandas as pd
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 
+# Making sure everything is reproducible
+np.random.seed(0)
+
 # Load data
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data"
 col_names = ['preg', 'plas', 'pres', 'skin', 'insulin', 'mass', 'pedi', 'age', 'class']
@@ -23,3 +26,12 @@ print x[0]
 
 new_x = fit.transform(x)
 print "\nSelected features are: \n", new_x[0:3]
+
+
+# Pearson Correlation
+from scipy.stats import pearsonr
+corr_p = {}
+for i in range(x.shape[1]):
+    corr_p[i] = pearsonr(x[:, i], y)
+    print "\nCorrelation, P-Value for feature {}: {}".format(i, corr_p[i])
+
