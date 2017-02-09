@@ -62,7 +62,7 @@ print sorted(zip(map(lambda x: round(x, 4), pearson_list), col_names), reverse=T
 from sklearn.feature_selection import f_regression
 f_p = f_regression(x[:, :], y)
 print "\nF-value: ", f_p[0], "\nP-value: ", f_p[1]
-print "Feature Ranking by F-values: "
+print "\nFeature Ranking by F-values: "
 print sorted(zip(map(lambda x: round(x, 4), f_p[0]), col_names), reverse=True)
 
 
@@ -86,7 +86,7 @@ print sorted(zip(map(lambda x: round(x, 4), mic_score), col_names), reverse=True
 def dist(x, y):
     #1d only
     return np.abs(x[:, None] - y)
-    
+
 
 def d_n(x):
     d = dist(x, x)
@@ -96,7 +96,7 @@ def d_n(x):
 def dcov_all(x, y):
     dnx = d_n(x)
     dny = d_n(y)
-    
+
     denom = np.product(dnx.shape)
     dc = (dnx * dny).sum() / denom
     dvx = (dnx**2).sum() / denom
@@ -131,6 +131,3 @@ for i in range(x.shape[1]):
 
 print "Random Forests Feature Ranking: "
 print sorted(zip(map(lambda x: round(x, 4), mean_score), col_names), reverse=True)
-
-
-

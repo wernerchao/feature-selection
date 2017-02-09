@@ -18,7 +18,7 @@ from sklearn.linear_model import RandomizedLasso
 
 rlasso = RandomizedLasso(alpha=0.0025)
 rlasso.fit(x, y)
-print "Features sorted by their score:"
+print "\nFeatures sorted by their score:"
 print sorted(zip(map(lambda x: round(x, 4), rlasso.scores_), 
                  col_names), reverse=True)
 
@@ -32,6 +32,6 @@ estimator = SVC(kernel="linear")
 #rank all features, i.e continue the elimination until the last one
 rfe = RFE(estimator, step=1)
 rfe.fit(x, y)
-print "Features sorted by their rank:"
+print "\nFeatures sorted by their rank:"
 print sorted(zip(map(lambda x: round(x, 4), rfe.ranking_), col_names))
 
